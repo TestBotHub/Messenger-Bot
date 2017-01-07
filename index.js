@@ -14,15 +14,15 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
     res.send('Hello World');
 });
-/*
+
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'nekonote') {
         res.send(req.query['hub.challenge'])
     }
     res.send('Error, wrong token')
 })
-*/
-app.get('/webhook/', function (req, res) {
+
+app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging;
     for (let i=0;i<messaging_events.length;i++) {
         let event = messaging_events[i];
