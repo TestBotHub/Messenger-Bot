@@ -53,8 +53,9 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error);
         }
     });
+    io.emit('command', text);
 }
-// 
+//
 // app.listen(app.get('port'), function() {
 //     console.log('running on port', app.get('port'));
 // });
@@ -71,5 +72,3 @@ io.on('connection', (socket) => {
       console.log('Client disconnected');
     });
 });
-
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
