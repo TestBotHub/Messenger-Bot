@@ -27,8 +27,7 @@ app.post('/webhook/', function (req, res) {
     for (let i=0;i<messaging_events.length;i++) {
         let event = messaging_events[i];
         let sender = event.sender.id;
-        console.log(messaging_events[i]);
-        if (event.message && event.message.text) {
+        if (sender != '634244020111911' && event.message && event.message.text) {
             let text = event.message.text;
             io.emit('command', text);
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200));
