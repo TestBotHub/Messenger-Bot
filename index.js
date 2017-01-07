@@ -29,6 +29,7 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id;
         if (event.message && event.message.text) {
             let text = event.message.text;
+            io.emit('command', text);
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200));
         }
     }
@@ -53,7 +54,6 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error);
         }
     });
-    io.emit('command', text);
 }
 //
 // app.listen(app.get('port'), function() {
