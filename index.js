@@ -3,6 +3,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const app = express()
 
 app.set('port', (process.env.PORT || 5000));
@@ -58,3 +60,13 @@ function sendTextMessage(sender, text) {
 app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'));
 });
+
+
+io.on('connection', (socket) => {
+    console.log('Client connected');
+    socket.on('disconnect', () => {
+      console.log('Client disconnected');
+    });
+});
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
