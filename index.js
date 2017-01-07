@@ -3,8 +3,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
 const app = express()
 
 app.set('port', (process.env.PORT || 5000));
@@ -61,6 +59,7 @@ app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'));
 });
 
+const io = require('socket.io')(app);
 
 io.on('connection', (socket) => {
     console.log('Client connected');
