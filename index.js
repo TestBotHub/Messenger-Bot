@@ -59,7 +59,11 @@ app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'));
 });
 
-const io = require('socket.io')(app);
+const io = require('socket.io')(
+  app.listen(app.get('port'), function() {
+    console.log('running on port', app.get('port'));
+  })
+);
 
 io.on('connection', (socket) => {
     console.log('Client connected');
