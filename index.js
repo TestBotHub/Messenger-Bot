@@ -22,6 +22,7 @@ app.get('/webhook/', function (req, res) {
     res.send('Error, wrong token')
 })
 
+let _sender;
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging;
     for (let i=0;i<messaging_events.length;i++) {
@@ -31,6 +32,7 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text;
             io.emit('command', text);
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200));
+            _sender = sender;
         }
     }
     res.sendStatus(200);
@@ -71,5 +73,8 @@ io.on('connection', (socket) => {
     console.log('Client connected');
     socket.on('disconnect', () => {
       console.log('Client disconnected');
+    });
+    socket.on('result', (data) => {
+      sendTextMessage(_sender, data);
     });
 });
