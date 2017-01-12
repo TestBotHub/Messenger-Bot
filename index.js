@@ -75,6 +75,6 @@ io.on('connection', (socket) => {
       console.log('Client disconnected');
     });
     socket.on('image', function(img) {
-      sendTextMessage(sender, "Bug found!!");
+      sendTextMessage(_sender, "Bug found!!");
     });
 });
