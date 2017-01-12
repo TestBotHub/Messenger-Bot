@@ -78,6 +78,7 @@ io.on('connection', (socket) => {
       sendTextMessage(_sender, data);
     });
     socket.on('image', (data) => {
+      console.log(data);
       sendTextMessage(_sender, "Bug found!!");
     });
 });
