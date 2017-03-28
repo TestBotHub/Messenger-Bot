@@ -40,18 +40,18 @@ app.post('/webhook/', function (req, res) {
 
 app.get('/hook/', function (req, res) {
   const secret = "testbothub";
-  let reqSecret = request.query['secret'];
+  let reqSecret = req.query['secret'];
   if (reqSecret == secret) {
-    let payload = request.body.payload;
+    let payload = req.body.payload;
     console.log(payload);
   }
 });
 
 app.post('/hook/', function (req, res) {
   const secret = "testbothub";
-  let reqSecret = request.query['secret'];
+  let reqSecret = req.query['secret'];
   if (reqSecret == secret) {
-    let payload = request.body.payload;
+    let payload = req.body.payload;
     console.log(payload);
   }
 });
