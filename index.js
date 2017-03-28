@@ -55,7 +55,10 @@ app.post('/hook/', function (req, res) {
   console.log(reqSecret);
   if (reqSecret == secret) {
     let payload = req.body.payload;
-    console.log(payload);
+    if (payload.ref == "refs/heads/master") {
+      console.log(payload.repository);
+      io.emit('hook', payload.repository.name);
+    }
   }
   res.sendStatus(200);
 });
