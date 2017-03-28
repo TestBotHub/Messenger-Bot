@@ -41,19 +41,23 @@ app.post('/webhook/', function (req, res) {
 app.get('/hook/', function (req, res) {
   const secret = "testbothub";
   let reqSecret = req.query['secret'];
+  console.log(reqSecret);
   if (reqSecret == secret) {
     let payload = req.body.payload;
     console.log(payload);
   }
+  res.sendStatus(200);
 });
 
 app.post('/hook/', function (req, res) {
   const secret = "testbothub";
   let reqSecret = req.query['secret'];
+  console.log(reqSecret);
   if (reqSecret == secret) {
     let payload = req.body.payload;
     console.log(payload);
   }
+  res.sendStatus(200);
 });
 
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
