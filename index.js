@@ -38,6 +38,15 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200);
 });
 
+app.post('/hook/', function (req, res) {
+  const secret = "testbothub";
+  let reqSecret = request.query['secret'];
+  if (reqSecret == secret) {
+    let payload = request.body.payload;
+    console.log(payload);
+  }
+});
+
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
 
 function sendTextMessage(sender, text) {
